@@ -116,43 +116,55 @@ class MenuViewController: UIViewController {
 //        self.gameCenterController()
 //        return
         
-        typeMultiPlayer = .solo
-        if button == batailleButton {
+        
+        if typeMultiPlayer == .solo {
             // je cache le bouton solo et j'affiche les operateur en haut
-            self.operatorsViews.frame.origin = CGPoint.zero
+            //self.operatorsViews.frame.origin = CGPoint.zero
+            self.hideBatailleButton()
+            typeMultiPlayer = .none
         }else{
             // je cache le bouton "duo" et j'affiche les operateur en bas
             self.operatorsViews.frame.origin = CGPoint(x: 0,
                                                        y: self.view.superview!.frame.midY)
+            
+            typeMultiPlayer = .solo
+            self.showOperatorButtons(true, animated: true, button: self.seulButton)
+            self.multi = nil
+            
+            (self.plusButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .up
+            (self.moinsButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .up
+            (self.divisButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .up
+            (self.multiButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .up
         }
-        self.showOperatorButtons(true, animated: true, button: self.seulButton)
-        self.multi = nil
-        
-        (self.plusButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .up
-        (self.moinsButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .up
-        (self.divisButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .up
-        (self.multiButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .up
+       
         
     }
     
     @IBAction func actionBataille (button: UIButton) {
-        typeMultiPlayer = .duo
         
-        if button == batailleButton {
+        
+        if typeMultiPlayer == .duo {
             // je cache le bouton solo et j'affiche les operateur en haut
-            self.operatorsViews.frame.origin = CGPoint.zero
+//            self.operatorsViews.frame.origin = CGPoint(x: 0,
+//                                                       y: self.view.superview!.frame.midY)
+            self.hideBatailleButton()
+            typeMultiPlayer = .none
+            
         }else{
             // je cache le bouton "duo" et j'affiche les operateur en bas
-            self.operatorsViews.frame.origin = CGPoint(x: 0,
-                                                       y: self.view.superview!.frame.midY)
+            
+            typeMultiPlayer = .duo
+            self.operatorsViews.frame.origin = CGPoint.zero
+            
+            self.showOperatorButtons(true, animated: true, button: button)
+        
+            (self.plusButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .down
+            (self.moinsButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .down
+            (self.divisButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .down
+            (self.multiButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .down
         }
         
-        self.showOperatorButtons(true, animated: true, button: button)
-    
-        (self.plusButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .down
-        (self.moinsButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .down
-        (self.divisButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .down
-        (self.multiButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .down
+        
     }
     
     
@@ -180,11 +192,12 @@ class MenuViewController: UIViewController {
                 }
             }else{
                 // je cache les boutons "operateur"
-                    self.seulButton.center = CGPoint(x: self.view.center.x,
-                                                     y: (self.seulButton.bounds.height / 2))
-                    self.batailleButton.center = CGPoint(x: self.view.center.x,
-                                                         y: self.view.bounds.height
-                                                         - (self.batailleButton.bounds.height / 2))
+                self.seulButton.center = CGPoint(x: self.view.center.x,
+                                                 y: (self.seulButton.bounds.height / 2))
+                self.batailleButton.center = CGPoint(x: self.view.center.x,
+                                                     y: self.view.bounds.height
+                                                     - (self.batailleButton.bounds.height / 2))
+                self.typeMultiPlayer = .none
             }
             
         },
