@@ -26,7 +26,7 @@ class MenuViewController: UIViewController {
     
     @IBOutlet var statusBarController : StatusBar?
     
-    var multi : MultiSearchViewController? = nil
+    var multi : MultiBrowserViewController? = nil
     
     var operateur : String = ""
     var typeMultiPlayer : Player = .none
@@ -82,11 +82,16 @@ class MenuViewController: UIViewController {
         else if (typeMultiPlayer == .duo)
         {
             
-            multi = MultiSearchViewController()
+            //multi = MultiSearchViewController()
+            multi = MultiBrowserViewController()
             if (UIDevice.current.userInterfaceIdiom == .pad) {
-                multi?.browserController?.modalPresentationStyle = .overFullScreen
-            }
-            multi?.initialiseBrowser(rootController: self, ope: self.operateur)
+                //multi?.browserController?.modalPresentationStyle = .overFullScreen
+            }else{
+                multi?.modalPresentationStyle = .overFullScreen            }
+            //multi?.initialiseBrowser(rootController: self, ope: self.operateur)
+            
+            self.present(multi!, animated: true, completion:  nil)
+            
         }
 
 

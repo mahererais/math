@@ -24,6 +24,9 @@
 		03C8F15D270F735E00EC08BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C8F15B270F735E00EC08BE /* Main.storyboard */; };
 		03C8F15F270F737C00EC08BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03C8F15E270F737C00EC08BE /* Assets.xcassets */; };
 		03C8F162270F737C00EC08BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03C8F160270F737C00EC08BE /* LaunchScreen.storyboard */; };
+		03E0764827970384007CA111 /* MultiBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E0764627970384007CA111 /* MultiBrowserViewController.swift */; };
+		03E0764927970384007CA111 /* MultiBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E0764727970384007CA111 /* MultiBrowserViewController.xib */; };
+		03E0764B27971D95007CA111 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E0764A27971D95007CA111 /* NetworkManager.swift */; };
 		03F46BEB2725677100F9A332 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F46BEA2725677100F9A332 /* ScoreTableViewCell.swift */; };
 		03F46BED27256A4A00F9A332 /* ScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F46BEC27256A4A00F9A332 /* ScoreTableViewCell.xib */; };
 		03F6017B271B3BD70086B541 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6017A271B3BD70086B541 /* Message.swift */; };
@@ -51,6 +54,9 @@
 		03C8F15E270F737C00EC08BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03C8F161270F737C00EC08BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03C8F163270F737C00EC08BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03E0764627970384007CA111 /* MultiBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiBrowserViewController.swift; sourceTree = "<group>"; };
+		03E0764727970384007CA111 /* MultiBrowserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiBrowserViewController.xib; sourceTree = "<group>"; };
+		03E0764A27971D95007CA111 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		03F46BEA2725677100F9A332 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 		03F46BEC27256A4A00F9A332 /* ScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreTableViewCell.xib; sourceTree = "<group>"; };
 		03F6017A271B3BD70086B541 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -73,7 +79,10 @@
 		032AB0752711E3E500C64C28 /* Multi */ = {
 			isa = PBXGroup;
 			children = (
+				03E0764A27971D95007CA111 /* NetworkManager.swift */,
 				032AB0762711E41500C64C28 /* MultiSearchViewController.swift */,
+				03E0764627970384007CA111 /* MultiBrowserViewController.swift */,
+				03E0764727970384007CA111 /* MultiBrowserViewController.xib */,
 				03F6017A271B3BD70086B541 /* Message.swift */,
 			);
 			path = Multi;
@@ -199,7 +208,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					03C8F151270F735D00EC08BE = {
 						CreatedOnToolsVersion = 12.4;
@@ -234,6 +243,7 @@
 				03C8F162270F737C00EC08BE /* LaunchScreen.storyboard in Resources */,
 				03C8F15F270F737C00EC08BE /* Assets.xcassets in Resources */,
 				03C8F15D270F735E00EC08BE /* Main.storyboard in Resources */,
+				03E0764927970384007CA111 /* MultiBrowserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,11 +254,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03E0764B27971D95007CA111 /* NetworkManager.swift in Sources */,
 				03F915B22721E0330099BCF1 /* ResumeView+Controller.swift in Sources */,
 				03B46DB4270FA02B00E0BC19 /* GameViewController.swift in Sources */,
 				03F46BEB2725677100F9A332 /* ScoreTableViewCell.swift in Sources */,
 				03B46DA6270F941900E0BC19 /* OperatorViewController.swift in Sources */,
 				03B46DA3270F93FC00E0BC19 /* OperatorView.swift in Sources */,
+				03E0764827970384007CA111 /* MultiBrowserViewController.swift in Sources */,
 				03B46DA9270F944000E0BC19 /* OperatorObject.swift in Sources */,
 				035EAC3127285937008B5754 /* StatusBar.swift in Sources */,
 				03C316CA27109672006C4EFB /* EquationObject.swift in Sources */,
@@ -410,19 +422,17 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5.0.2;
-				DEVELOPMENT_TEAM = 7SZRU597FH;
+				DEVELOPMENT_TEAM = QNHVD4UE8Y;
 				INFOPLIST_FILE = math/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.temormec.math;
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mahere88.math;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -435,18 +445,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 5.0.2;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = math/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.temormec.math;
+				PRODUCT_BUNDLE_IDENTIFIER = com.temormec1.math;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
