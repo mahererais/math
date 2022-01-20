@@ -77,9 +77,9 @@ class NetworkManager: NSObject {
     
     // MARK: -
     
-    func initConnectionSocket() {
-        self.host = NWEndpoint.Host(PreferenceManager.sharedInstance.loadIP())
-        self.port = NWEndpoint.Port(PreferenceManager.sharedInstance.loadPort())!
+    fileprivate func initConnectionSocket() {
+        self.host = NWEndpoint.Host("192.168.2.98")
+        self.port = NWEndpoint.Port(24099)
     }
     
     
@@ -293,14 +293,14 @@ class NetworkManager: NSObject {
                     if let messageObject = self.decode(Message.self, data: self.data)
                     {
                         DispatchQueue.main.async {
-                            if messageObject._type == .info {
+                          /*  if messageObject._type == .info {
                                 self.delegate?.receiveServerUpdate(number: messageObject._date)
                             }else{
                                 print (String(data: self.data, encoding: .utf8) ?? "")
                                 self.delegate?.receiveMessage(message: messageObject,
                                                               isMe: false,
                                                               id: (UIDevice.current.identifierForVendor?.description)!)
-                            }
+                            }*/
                             
                         }
                         self.data.removeAll()

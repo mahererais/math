@@ -6,6 +6,32 @@
 //
 
 import UIKit
+import Network
+
+extension MultiBrowserViewController : NetworkManagerProtocole {
+    
+    func receiveMessage(name:String, message:String, isMe: Bool, id:String)
+    {
+        
+    }
+    func receiveMessage(message:Message, isMe: Bool, id:String)
+    {
+        
+    }
+    func receiveServerUpdate(number: TimeInterval)
+    {
+        
+    }
+    func error(error: NWError?,title:String)
+    {
+        
+    }
+    func statusConnectionUpdate (status:String, color: UIColor)
+    {
+        
+    }
+    
+}
 
 class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
     
@@ -23,6 +49,11 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
 
     @IBOutlet var tableView : UITableView!
     var data : [String] = []
+    lazy var networkManager = NetworkManager()
+    
+    deinit {
+        self.networkManager.close()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +70,9 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
         data.append("maher")
         data.append("rais")
         
+        networkManager.delegate = self
+        networkManager.startConnectionTCP()
+        
     }
 
 
@@ -51,5 +85,11 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func actionDone (sender : Any?) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }
+
+

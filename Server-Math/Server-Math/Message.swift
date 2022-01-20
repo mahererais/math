@@ -3,9 +3,9 @@
 //  math
 //
 //  Created by maher on 16/10/2021.
-//
+// maher
 
-import UIKit
+import Foundation
 
 enum TypeMessage : Int, Codable{
     case message,  
@@ -16,6 +16,7 @@ enum TypeMessage : Int, Codable{
          end,
          unknown
 }
+
 
 
 fileprivate enum MessageKeys : String {
