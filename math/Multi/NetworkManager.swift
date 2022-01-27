@@ -30,7 +30,7 @@ protocol NetworkManagerProtocole : NSObjectProtocol{
     func error(error: NWError?,title:String)
     func statusConnectionUpdate (status:String, color: UIColor)
     func connectionReady(manager: NetworkManager)
-    func invitationWasAcceptionByOppenent()
+    func invitationWasAcceptionByOppenent(message: Message)
 }
 
 // fonctions optionnel du protocole
@@ -323,7 +323,7 @@ class NetworkManager: NSObject {
                                     donnee?[0][messageObject._playerID!.keys.first!] = nil
                                 }else if messageObject._value1! == 99 {
                                     // le joueur adverse a accepté l'invitation
-                                    self.delegate?.invitationWasAcceptionByOppenent()
+                                    self.delegate?.invitationWasAcceptionByOppenent(message: messageObject)
                                 }
                                 
                             }else{

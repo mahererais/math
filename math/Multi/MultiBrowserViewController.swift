@@ -25,6 +25,8 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
     lazy var networkManager: NetworkManager? = NetworkManager()
     let currentID = UIDevice.current.identifierForVendor!.hashValue
     let currentName = UIDevice.current.name
+    var playerID : [Int: String]? = nil
+    var oppenentID : [Int: String]? = nil
     
     deinit {
         print(object_getClass(self)!.description() + "." + #function)
@@ -234,6 +236,7 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
             StatusBar.sharedInstance.show(str: "your opponent left", status: .close)
         }
     }
+    // j'ai un nouveau joueur sur le server
     func receiveServerUpdate(id: [Int: String])
     {
         // je cherche a savoir si j'ai deja un invité
@@ -256,10 +259,14 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
         let currentSection = self.data.count > 1 ? 1 : 0
         self.tableView?.reloadSections(IndexSet(integer: currentSection), with: .automatic)
     }
-    func invitationWasAcceptionByOppenent () {
+    func invitationWasAcceptionByOppenent (message: Message) {
+        StatusBar.sharedInstance.hide()
         self.okItemButton?.isEnabled = true
         playerPosition = .first
+        self.playerID = message._toPlayerId
+        self.oppenentID = message._playerID
         self.tableView?.reloadSections(IndexSet(integer: 0), with: .none)
+        
     }
     @IBAction func actionOkItemButton() {
         self.loadGameViewController()
@@ -292,6 +299,8 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
                     msg._playerID = tmp
                     msg._value1 = 99 // code : ok
                     self.networkManager?.sendPacket(msg)
+                    self.playerID = tmp
+                    self.oppenentID = msg._toPlayerId
                     
                     self.rootController?.present(self.gameController!,
                                  animated: true,
@@ -314,6 +323,8 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
         }))
         playerPosition = .secondWait
         self.present (alert, animated: true, completion: nil)
+        
+        StatusBar.sharedInstance.hide()
         
         
         return
@@ -344,16 +355,21 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
         let msg = Message(type: .newPlayed)
         let playerId = [currentID: UIDevice.current.name]
         msg._playerID = playerId
+        msg._toPlayerId = self.oppenentID
         self.networkManager?.sendPacket(msg)
     }
     
     @objc func sendDoneMessage()  {
         print ("------> envoie un \"Donne\"")
         let msg = Message(type: .done)
+        msg._toPlayerId = self.oppenentID
+        msg._playerID = self.playerID
         self.networkManager?.sendPacket(msg)
     }
     
     func sendData (equations : Message) {
+        equations._toPlayerId = self.oppenentID
+        equations._playerID = self.playerID
         self.networkManager?.sendPacket(equations)
     }
     

@@ -213,9 +213,11 @@ class GameViewController: UIViewController {
     
      @objc func backToMenu () {
         self.multiPeerObject?.sendData(equations: Message(type: .end))
-        //self.multiPeerObject?.stopMultiPeerService()
-        self.multiPeerObject?.networkManager?.close()
-        self.dismiss(animated: true, completion: nil)
+       
+        self.dismiss(animated: true, completion: {
+            //self.multiPeerObject?.stopMultiPeerService()
+            self.multiPeerObject?.networkManager?.close()
+        })
     }
     
     @IBAction func numberPressed(button: UIButton) {
