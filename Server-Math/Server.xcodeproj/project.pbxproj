@@ -49,6 +49,7 @@
 			children = (
 				030BEC6027985E3700B97396 /* Server-Math */,
 				030BEC5F27985E3700B97396 /* Products */,
+				03EA77E827A33CE200C9F295 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +70,13 @@
 				030BEC6C27985F4300B97396 /* Message.swift */,
 			);
 			path = "Server-Math";
+			sourceTree = "<group>";
+		};
+		03EA77E827A33CE200C9F295 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,7 +114,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 030BEC5927985E3700B97396 /* Build configuration list for PBXProject "Server-Math" */;
+			buildConfigurationList = 030BEC5927985E3700B97396 /* Build configuration list for PBXProject "Server" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -279,7 +287,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		030BEC5927985E3700B97396 /* Build configuration list for PBXProject "Server-Math" */ = {
+		030BEC5927985E3700B97396 /* Build configuration list for PBXProject "Server" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				030BEC6327985E3700B97396 /* Debug */,
