@@ -16,11 +16,10 @@ enum PlayerPosition {
     // second : c'est celui qui ce fait invité
 }
 
-class MultiSearchViewController: NSObject, MCBrowserViewControllerDelegate, MCNearbyServiceAdvertiserDelegate, MCSessionDelegate
+class MultiSearchViewController: MultiViewController, MCBrowserViewControllerDelegate, MCNearbyServiceAdvertiserDelegate, MCSessionDelegate
 {
     
     
-    var statusDone = (a:false, b:false)
     var playerPosition : PlayerPosition = .none
     var operateur: String = ""
     
@@ -62,7 +61,7 @@ class MultiSearchViewController: NSObject, MCBrowserViewControllerDelegate, MCNe
         self.session    = nil
     }
     
-    func stopMultiPeerService() {
+    override func stopMultiService() {
         print(object_getClass(self)!.description() + "." + #function)
         self.ad?.delegate = nil
         self.ad?.stopAdvertisingPeer()
@@ -115,7 +114,7 @@ class MultiSearchViewController: NSObject, MCBrowserViewControllerDelegate, MCNe
     
     // MARK: - send / receive data
     
-    @objc func sendDoneMessage()  {
+    @objc override func sendDoneMessage()  {
         print ("------> envoie un \"Donne\"")
         let msg = Message(type: .done)
         self.sendData(equations: msg)
@@ -150,7 +149,7 @@ class MultiSearchViewController: NSObject, MCBrowserViewControllerDelegate, MCNe
         }
     }
     
-    func sendData (equations : Message) {
+    override func sendData (equations : Message) {
         print (" sending data -> : " + object_getClass(self)!.description() + "." + #function)
         do {
             if #available(iOS 9.0, *) {
@@ -226,7 +225,7 @@ class MultiSearchViewController: NSObject, MCBrowserViewControllerDelegate, MCNe
                     alerController.addAction(UIAlertAction(title: "Ok",
                                                            style: .default,
                                                            handler: {_ in
-                        self.stopMultiPeerService()
+                        self.stopMultiService()
                     }))
                     let controller = UIApplication.shared.windows.first?.rootViewController
                     //controller?.present(alerController, animated: true, completion: nil)
@@ -274,7 +273,7 @@ class MultiSearchViewController: NSObject, MCBrowserViewControllerDelegate, MCNe
     
     func browserViewControllerWasCancelled(_ browserViewController: MCBrowserViewController) {
         print(object_getClass(self)!.description() + "." + #function)
-        self.stopMultiPeerService()
+        self.stopMultiService()
         self.ad?.delegate = nil
         self.ad?.stopAdvertisingPeer()
         self.ad = nil

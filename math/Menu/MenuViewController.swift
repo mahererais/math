@@ -88,7 +88,10 @@ class MenuViewController: UIViewController {
 //                multi?.browserController?.modalPresentationStyle = .overFullScreen
 //            }
 //            multi?.initialiseBrowser(rootController: self, ope: self.operateur)
+//            
 //            return
+            
+            
             
             let multi:MultiBrowserViewController? = MultiBrowserViewController(nibName: "MultiBrowserViewController", bundle: nil)
             multi?.initialise(rootController: self, ope: self.operateur)

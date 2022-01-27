@@ -8,16 +8,31 @@
 import UIKit
 import Network
 
+class MultiViewController : UIViewController {
+    var statusDone = (a:false, b:false)
+    
+    @objc func sendDoneMessage()  {
+        print ("*** je suis pas supposé executer cette fonction")
+    }
+    
+    func sendData (equations : Message) {
+        print ("*** je suis pas supposé executer cette fonction")
+    }
+    
+    func stopMultiService () {
+        print ("*** je suis pas supposé executer cette fonction")
+    }
+}
 
-class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, NetworkManagerProtocole
+class MultiBrowserViewController: MultiViewController , UITableViewDataSource, UITableViewDelegate, NetworkManagerProtocole
 {
 
     @IBOutlet var tableView : UITableView?
     @IBOutlet var okItemButton : UIBarButtonItem?
     @IBOutlet var navigatItem : UINavigationItem?
+    @IBOutlet var navigatBar : UINavigationBar?
     
     var gameController : GameViewController?
-    var statusDone = (a:false, b:false)
     var rootController: UIViewController? = nil
     var operateur: String = ""
     var playerPosition : PlayerPosition = .none
@@ -74,6 +89,10 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
         networkManager?.startConnectionTCP()
         
       
+        self.navigatBar?.layer.shadowOffset = CGSize(width: 0, height: 5)
+        self.navigatBar?.layer.shadowColor = UIColor.black.cgColor
+        self.navigatBar?.layer.shadowRadius = 5
+        self.navigatBar?.layer.shadowOpacity = 0.65
         
     }
 
@@ -359,7 +378,7 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
         self.networkManager?.sendPacket(msg)
     }
     
-    @objc func sendDoneMessage()  {
+    @objc override func sendDoneMessage()  {
         print ("------> envoie un \"Donne\"")
         let msg = Message(type: .done)
         msg._toPlayerId = self.oppenentID
@@ -367,12 +386,15 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
         self.networkManager?.sendPacket(msg)
     }
     
-    func sendData (equations : Message) {
+    override func sendData (equations : Message) {
         equations._toPlayerId = self.oppenentID
         equations._playerID = self.playerID
         self.networkManager?.sendPacket(equations)
     }
     
+    override func stopMultiService() {
+        self.networkManager?.close()
+    }
 }
 
 

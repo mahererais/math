@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
     
     var operatorString : String?
     
-    var multiPeerObject: MultiBrowserViewController?
+    var multiPeerObject: MultiViewController?
     //weak var multiPeerObject: MultiSearchViewController?
    
     var j1EquationResponse : [Int] = []
@@ -47,7 +47,7 @@ class GameViewController: UIViewController {
     init(ope : String, multiPeerObject: MultiSearchViewController? = nil, position: PlayerPosition = PlayerPosition.none) {
         super.init(nibName: "GameViewController", bundle: nil)
         self.operatorString = ope
-        //self.multiPeerObject = multiPeerObject
+        self.multiPeerObject = multiPeerObject
         self.playerPosition = position
         self.etape = 0
     }
@@ -58,6 +58,7 @@ class GameViewController: UIViewController {
         self.playerPosition = position
         self.etape = 0
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -215,8 +216,8 @@ class GameViewController: UIViewController {
         self.multiPeerObject?.sendData(equations: Message(type: .end))
        
         self.dismiss(animated: true, completion: {
-            //self.multiPeerObject?.stopMultiPeerService()
-            self.multiPeerObject?.networkManager?.close()
+            self.multiPeerObject?.stopMultiService()
+            //self.multiPeerObject?.networkManager?.close()
         })
     }
     
