@@ -26,7 +26,7 @@ protocol NetworkManagerProtocole : NSObjectProtocol{
     func receiveMessage(message:Message, isMe: Bool, id:String)
     func receiveServerUpdate(id: [Int: String])
     func receiveServerRemove(id: [Int: String])
-    func receiveInvite(id: [Int: String])
+    func receiveInvite(message: Message)
     func error(error: NWError?,title:String)
     func statusConnectionUpdate (status:String, color: UIColor)
     func connectionReady(manager: NetworkManager)
@@ -316,7 +316,7 @@ class NetworkManager: NSObject {
                             }else if messageObject._type == .invite {
                                 if messageObject._value1 == nil {
                                     // j'ai recu une invitation
-                                    self.delegate?.receiveInvite(id : messageObject._toPlayerId!)
+                                    self.delegate?.receiveInvite(message: messageObject)
                                 }else if messageObject._value1! == -99 {
                                     // le joueur adverse a refusé l'invitation
                                     donnee?[1][messageObject._playerID!.keys.first!] == messageObject._playerID!.values.first!

@@ -274,9 +274,9 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
             
         })
     }
-    func receiveInvite(id: [Int: String]) {
+    func receiveInvite(message: Message) {
         let alert = UIAlertController (title: title,
-                                       message: "\(id.values.first!) invited you",
+                                       message: "\(message._toPlayerId!.values.first!) invited you",
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok",
                                       style: .default,
@@ -287,8 +287,8 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
                 DispatchQueue.main.async {
                     
                     let msg = Message(type: .invite)
-                    let tmp = msg._toPlayerId
-                    msg._toPlayerId = msg._playerID
+                    let tmp = message._toPlayerId
+                    msg._toPlayerId = message._playerID
                     msg._playerID = tmp
                     msg._value1 = 99 // code : ok
                     self.networkManager?.sendPacket(msg)
@@ -306,8 +306,8 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
                                       handler: {_ in
             self.playerPosition = .none
             let msg = Message(type: .invite)
-            let tmp = msg._toPlayerId
-            msg._toPlayerId = msg._playerID
+            let tmp = message._toPlayerId
+            msg._toPlayerId = message._playerID
             msg._playerID = tmp
             msg._value1 = -99
             self.networkManager?.sendPacket(msg)
@@ -320,11 +320,11 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
         // je cherche a savoir si j'ai deja un invité
         
 
-        if self.data.count == 1 {
-            self.data.insert(id, at: 0)
-        }else{
-            self.data[0][id.keys.first!] = id.values.first!
-        }
+//        if self.data.count == 1 {
+//            self.data.insert(id, at: 0)
+//        }else{
+//            self.data[0][id.keys.first!] = id.values.first!
+//        }
         
     }
     func error(error: NWError?,title:String)
