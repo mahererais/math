@@ -26,7 +26,8 @@ class MenuViewController: UIViewController {
     
     @IBOutlet var statusBarController : StatusBar?
     
-    var multi : MultiBrowserViewController? = nil
+    //var multi : MultiBrowserViewController? = nil
+    var multi : MultiSearchViewController? = nil
     
     var operateur : String = ""
     var typeMultiPlayer : Player = .none
@@ -82,16 +83,19 @@ class MenuViewController: UIViewController {
         else if (typeMultiPlayer == .duo)
         {
             
-            //multi = MultiSearchViewController()
-            multi = MultiBrowserViewController()
-            if (UIDevice.current.userInterfaceIdiom == .pad) {
-                //multi?.browserController?.modalPresentationStyle = .overFullScreen
-            }else{
-                multi?.modalPresentationStyle = .overFullScreen            }
-            //multi?.initialiseBrowser(rootController: self, ope: self.operateur)
+//            multi = MultiSearchViewController()
+//            if (UIDevice.current.userInterfaceIdiom == .pad) {
+//                multi?.browserController?.modalPresentationStyle = .overFullScreen
+//            }
+//            multi?.initialiseBrowser(rootController: self, ope: self.operateur)
+//            return
             
+            let multi:MultiBrowserViewController? = MultiBrowserViewController(nibName: "MultiBrowserViewController", bundle: nil)
+            multi?.initialise(rootController: self, ope: self.operateur)
+            if (UIDevice.current.userInterfaceIdiom != .pad) {
+                multi?.modalPresentationStyle = .overFullScreen
+            }
             self.present(multi!, animated: true, completion:  nil)
-            
         }
 
 
@@ -134,7 +138,7 @@ class MenuViewController: UIViewController {
             
             typeMultiPlayer = .solo
             self.showOperatorButtons(true, animated: true, button: self.seulButton)
-            self.multi = nil
+            //self.multi = nil
             
             (self.plusButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .up
             (self.moinsButton.gestureRecognizers!.first as! UISwipeGestureRecognizer).direction = .up

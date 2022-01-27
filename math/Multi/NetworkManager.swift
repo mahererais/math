@@ -8,6 +8,9 @@
 import UIKit
 import Network
 
+let prt: UInt16 = 24099
+let ip: String = /*"127.0.0.1"*/  "192.168.2.98"
+
 /*
     --------------- sources: ---------------
     https://developer.apple.com/videos/play/wwdc2019/712/
@@ -21,11 +24,17 @@ import Network
 protocol NetworkManagerProtocole : NSObjectProtocol{
     func receiveMessage(name:String, message:String, isMe: Bool, id:String)
     func receiveMessage(message:Message, isMe: Bool, id:String)
-    func receiveServerUpdate(number: TimeInterval)
+    func receiveServerUpdate(id: [Int: String])
+    func receiveServerRemove(id: [Int: String])
+    func receiveInvite(id: [Int: String])
     func error(error: NWError?,title:String)
     func statusConnectionUpdate (status:String, color: UIColor)
+    func connectionReady(manager: NetworkManager)
+    func invitationWasAcceptionByOppenent()
 }
 
+// fonctions optionnel du protocole
+// ici j'indique leur implementation par defaut
 extension NetworkManagerProtocole {
     //func error(error: NWError?, title:String = "Error Connection") {
     func error(error: NWError?) {
@@ -33,6 +42,10 @@ extension NetworkManagerProtocole {
     }
     func statusConnectionUpdate (status:String)  {
         self.statusConnectionUpdate(status: status, color: .black)
+    }
+    
+    func connectionReady(manager: NetworkManager) {
+        
     }
 }
 
@@ -72,14 +85,15 @@ class NetworkManager: NSObject {
     }
     
     deinit {
-        _TOOLS._print(obj: self)
+       // _TOOLS._print(obj: self)
+        print(object_getClass(self)!.description() + "." + #function)
     }
     
     // MARK: -
     
     fileprivate func initConnectionSocket() {
-        self.host = NWEndpoint.Host("192.168.2.98")
-        self.port = NWEndpoint.Port(24099)
+        self.host = NWEndpoint.Host(ip)
+        self.port = NWEndpoint.Port(rawValue: prt)
     }
     
     
@@ -105,7 +119,7 @@ class NetworkManager: NSObject {
                 //self.startConnectionTCP()
             }
         }
-        let queue = DispatchQueue(label: "Monitor")
+        let queue = DispatchQueue(label: "Monitor Math")
         monitor.start(queue: queue)
         
     }
@@ -133,6 +147,7 @@ class NetworkManager: NSObject {
                             print("connection status : ready")
                             self.delegate?.statusConnectionUpdate(status: "ready")
                             self.receive_tcp()
+                            self.delegate?.connectionReady(manager: self)
                         case .setup:
                             //The connection has been initialized but not started
                             print("connection status : setup")
@@ -293,14 +308,30 @@ class NetworkManager: NSObject {
                     if let messageObject = self.decode(Message.self, data: self.data)
                     {
                         DispatchQueue.main.async {
-                          /*  if messageObject._type == .info {
-                                self.delegate?.receiveServerUpdate(number: messageObject._date)
+                            var donnee = (self.delegate as? MultiBrowserViewController)?.data
+                            if messageObject._type == .newPlayed {
+                                self.delegate?.receiveServerUpdate(id: messageObject._playerID ?? [:])
+                            }else if messageObject._type == .playerLeft {
+                                self.delegate?.receiveServerRemove(id: messageObject._playerID ?? [:])
+                            }else if messageObject._type == .invite {
+                                if messageObject._value1 == nil {
+                                    // j'ai recu une invitation
+                                    self.delegate?.receiveInvite(id : messageObject._toPlayerId!)
+                                }else if messageObject._value1! == -99 {
+                                    // le joueur adverse a refusé l'invitation
+                                    donnee?[1][messageObject._playerID!.keys.first!] == messageObject._playerID!.values.first!
+                                    donnee?[0][messageObject._playerID!.keys.first!] = nil
+                                }else if messageObject._value1! == 99 {
+                                    // le joueur adverse a accepté l'invitation
+                                    self.delegate?.invitationWasAcceptionByOppenent()
+                                }
+                                
                             }else{
                                 print (String(data: self.data, encoding: .utf8) ?? "")
                                 self.delegate?.receiveMessage(message: messageObject,
                                                               isMe: false,
                                                               id: (UIDevice.current.identifierForVendor?.description)!)
-                            }*/
+                            }
                             
                         }
                         self.data.removeAll()

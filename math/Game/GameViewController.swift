@@ -27,8 +27,10 @@ class GameViewController: UIViewController {
     var equations: [[String: Int]] = []
     
     var operatorString : String?
-    weak var multiPeerObject: MultiSearchViewController?
     
+    var multiPeerObject: MultiBrowserViewController?
+    //weak var multiPeerObject: MultiSearchViewController?
+   
     var j1EquationResponse : [Int] = []
     var j2EquationResponse : [Int] = []
     
@@ -45,7 +47,14 @@ class GameViewController: UIViewController {
     init(ope : String, multiPeerObject: MultiSearchViewController? = nil, position: PlayerPosition = PlayerPosition.none) {
         super.init(nibName: "GameViewController", bundle: nil)
         self.operatorString = ope
-        self.multiPeerObject = multiPeerObject
+        //self.multiPeerObject = multiPeerObject
+        self.playerPosition = position
+        self.etape = 0
+    }
+    init(ope : String, multiBrowserObject: MultiBrowserViewController? , position: PlayerPosition = PlayerPosition.none) {
+        super.init(nibName: "GameViewController", bundle: nil)
+        self.operatorString = ope
+        self.multiPeerObject = multiBrowserObject
         self.playerPosition = position
         self.etape = 0
     }
@@ -204,7 +213,8 @@ class GameViewController: UIViewController {
     
      @objc func backToMenu () {
         self.multiPeerObject?.sendData(equations: Message(type: .end))
-        self.multiPeerObject?.stopMultiPeerService()
+        //self.multiPeerObject?.stopMultiPeerService()
+        self.multiPeerObject?.networkManager?.close()
         self.dismiss(animated: true, completion: nil)
     }
     

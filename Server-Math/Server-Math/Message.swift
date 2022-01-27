@@ -8,7 +8,10 @@
 import Foundation
 
 enum TypeMessage : Int, Codable{
-    case message,  
+    case message,
+         newPlayed,
+         playerLeft,
+         invite,
          response,
          done,
          result,
@@ -27,6 +30,10 @@ fileprivate enum MessageKeys : String {
     case operateur    = "operateur"
     case resultat     = "resultat"
     case btPressed    = "btPressed"
+    case name         = "name"
+    case playerID     = "playerID"
+    case toPlayerID   = "toPlayerID"
+    case invite       = "invite"
 }
 
 class Message: NSObject, Codable {
@@ -38,6 +45,9 @@ class Message: NSObject, Codable {
     var _resultat : Int?
     var _operateur: String?
     var _btPressed: String?
+    var _name: String?
+    var _playerID: [Int: String]?
+    var _toPlayerId : [Int: String]?
     
     init(type: TypeMessage) {
         self._type = type
@@ -55,6 +65,9 @@ class Message: NSObject, Codable {
         coder.encode(self._value2, forKey: MessageKeys.value2.rawValue)
         coder.encode(self._operateur, forKey: MessageKeys.operateur.rawValue)
         coder.encode(self._btPressed, forKey: MessageKeys.btPressed.rawValue)
+        coder.encode(self._name, forKey: MessageKeys.name.rawValue)
+        coder.encode(self._playerID, forKey: MessageKeys.playerID.rawValue)
+        coder.encode(self._toPlayerId, forKey: MessageKeys.toPlayerID.rawValue)
     }
     
     required init?(coder: NSCoder) {
@@ -66,6 +79,9 @@ class Message: NSObject, Codable {
         self._resultat = coder.decodeInteger(forKey: MessageKeys.resultat.rawValue)
         self._operateur = coder.decodeObject(forKey: MessageKeys.operateur.rawValue) as! String
         self._btPressed = coder.decodeObject(forKey: MessageKeys.btPressed.rawValue) as! String
+        self._name = coder.decodeObject(forKey: MessageKeys.name.rawValue) as! String
+        self._playerID = coder.decodeObject(forKey: MessageKeys.playerID.rawValue) as! [Int : String]
+        self._toPlayerId = coder.decodeObject(forKey: MessageKeys.toPlayerID.rawValue) as! [Int : String]
     }
     
     // MARK: - debug description
