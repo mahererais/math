@@ -128,6 +128,9 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
         cell.textLabel?.text = values[indexPath.row]
         if self.data.count == 2 && indexPath.section == 0 {
             cell.detailTextLabel?.text = "connecting ..."
+            if playerPosition == .first {
+                cell.detailTextLabel?.text = "connected !!! 👍🏼"
+            }
         }
         return cell
     }
@@ -147,7 +150,7 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
             msg._toPlayerId = [id : name]
             msg._playerID = [self.currentID: self.currentName]
             self.networkManager?.sendPacket(msg)
-            playerPosition = .first
+            
             
             // deplacer le joueur selectionné dans la section invité
             if self.data.count == 1 { //je n'ai pas de section invité
@@ -255,6 +258,8 @@ class MultiBrowserViewController: UIViewController , UITableViewDataSource, UITa
     }
     func invitationWasAcceptionByOppenent () {
         self.okItemButton?.isEnabled = true
+        playerPosition = .first
+        self.tableView?.reloadSections(IndexSet(integer: 0), with: .none)
     }
     @IBAction func actionOkItemButton() {
         self.loadGameViewController()
