@@ -94,6 +94,8 @@ class MultiBrowserViewController: MultiViewController , UITableViewDataSource, U
         self.navigatBar?.layer.shadowRadius = 5
         self.navigatBar?.layer.shadowOpacity = 0.65
         
+        StatusBar.sharedInstance.hide()
+        
     }
 
 
