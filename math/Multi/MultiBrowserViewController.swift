@@ -10,6 +10,7 @@ import Network
 
 class MultiViewController : UIViewController {
     var statusDone = (a:false, b:false)
+    var oppenentID : [Int: String]? = nil
     
     @objc func sendDoneMessage()  {
         print ("*** je suis pas supposé executer cette fonction")
@@ -22,6 +23,8 @@ class MultiViewController : UIViewController {
     func stopMultiService () {
         print ("*** je suis pas supposé executer cette fonction")
     }
+    
+    
 }
 
 class MultiBrowserViewController: MultiViewController , UITableViewDataSource, UITableViewDelegate, NetworkManagerProtocole
@@ -41,7 +44,7 @@ class MultiBrowserViewController: MultiViewController , UITableViewDataSource, U
     let currentID = UIDevice.current.identifierForVendor!.hashValue
     let currentName = UIDevice.current.name
     var playerID : [Int: String]? = nil
-    var oppenentID : [Int: String]? = nil
+    
     
     deinit {
         print(object_getClass(self)!.description() + "." + #function)

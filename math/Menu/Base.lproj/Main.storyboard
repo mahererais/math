@@ -185,7 +185,7 @@
                                     <action selector="actionSeulWithButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HVk-yE-zwl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VM0-qc-cLx" customClass="RoundButton" customModule="math" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VM0-qc-cLx" customClass="RoundButton" customModule="math" customModuleProvider="target">
                                 <rect key="frame" x="120" y="249" width="80" height="70"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>

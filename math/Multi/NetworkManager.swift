@@ -8,9 +8,6 @@
 import UIKit
 import Network
 
-let prt: UInt16 = 24099
-let ip: String = /*"127.0.0.1"*/  "192.168.2.98"
-
 /*
     --------------- sources: ---------------
     https://developer.apple.com/videos/play/wwdc2019/712/
@@ -57,7 +54,7 @@ class NetworkManager: NSObject {
 //    let wifiMonitor = NWPathMonitor(requiredInterfaceType: .wifi)
 //    let cellMonitor = NWPathMonitor(requiredInterfaceType: .cellular)
 
-    fileprivate let serveurEndPoint: NWEndpoint = NWEndpoint.hostPort(host:NWEndpoint.Host(_SERVER.adresse),
+    fileprivate let serveurEndPoint: NWEndpoint = NWEndpoint.hostPort(host:NWEndpoint.Host(_SERVER.ip),
                                                    port: NWEndpoint.Port(String(_SERVER.port))!)
         
     fileprivate var connection: NWConnection?
@@ -92,8 +89,8 @@ class NetworkManager: NSObject {
     // MARK: -
     
     fileprivate func initConnectionSocket() {
-        self.host = NWEndpoint.Host(ip)
-        self.port = NWEndpoint.Port(rawValue: prt)
+        self.host = NWEndpoint.Host(_SERVER.ip)
+        self.port = NWEndpoint.Port(rawValue: _SERVER.port)
     }
     
     

@@ -160,8 +160,10 @@ class GameViewController: UIViewController {
         StatusBar.sharedInstance.show(status: .sync)
         
         let message = Message(type: .message)
+        
         message._operateur = self.operatorString
         message._equations = self.equations
+        message._toPlayerId = self.multiPeerObject?.oppenentID
         self.multiPeerObject?.sendData(equations: message)
         print ("------> envoie de \"l'equation\"")
     }

@@ -113,8 +113,8 @@ struct _NOTIFICATION {
 }
 
 struct _SERVER {
-    static var adresse = /*"176.158.155.209"*/ /*"127.0.0.1" */ "192.168.2.98"
-    static var port    = "50000"
+    static var ip = /*"176.158.155.209"*/ /*"127.0.0.1" */ "192.168.2.98"
+    static var port : UInt16   = 24099
 }
 
 

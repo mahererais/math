@@ -7,6 +7,7 @@
 
 import UIKit
 import GameKit
+import SwiftUI
 
 
 enum Player {
@@ -58,6 +59,21 @@ class MenuViewController: UIViewController {
         self.addGestureTo(button: self.plusButton, direction: [.up, .down])
         self.addGestureTo(button: self.moinsButton, direction: [.up, .down])
         // **********************************************************
+        
+        if #available(iOS 13.0, *) {
+            //let b = ButtonSwiftUIView(buttonText: "maher").background(Color.init(SwiftUI.Color.RGBColorSpace.sRGB, red: 1, green: 0, blue: 0, opacity: 0))
+            let b = ButtonMaher(text: "Setting", strokeWidth: 2)
+            let child = UIHostingController(rootView: b)
+            child.view.frame = CGRect(x: 0, y: 0,
+                                      width: self.view.frame.width/2,
+                                      height: self.view.frame.height/3)
+            child.view.backgroundColor = .clear
+            child.view.center = self.view.center
+            self.view.addSubview(child.view)
+        } else {
+            // Fallback on earlier versions
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

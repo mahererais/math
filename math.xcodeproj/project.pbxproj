@@ -28,6 +28,7 @@
 		03E0764927970384007CA111 /* MultiBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E0764727970384007CA111 /* MultiBrowserViewController.xib */; };
 		03E0764B27971D95007CA111 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E0764A27971D95007CA111 /* NetworkManager.swift */; };
 		03E0764D27971E96007CA111 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E0764C27971E96007CA111 /* Tools.swift */; };
+		03ECFC3027B57D3C00D9F8EC /* ButtonSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECFC2F27B57D3C00D9F8EC /* ButtonSwiftUIView.swift */; };
 		03F46BEB2725677100F9A332 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F46BEA2725677100F9A332 /* ScoreTableViewCell.swift */; };
 		03F46BED27256A4A00F9A332 /* ScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F46BEC27256A4A00F9A332 /* ScoreTableViewCell.xib */; };
 		03F6017B271B3BD70086B541 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6017A271B3BD70086B541 /* Message.swift */; };
@@ -59,6 +60,7 @@
 		03E0764727970384007CA111 /* MultiBrowserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiBrowserViewController.xib; sourceTree = "<group>"; };
 		03E0764A27971D95007CA111 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		03E0764C27971E96007CA111 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		03ECFC2F27B57D3C00D9F8EC /* ButtonSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSwiftUIView.swift; sourceTree = "<group>"; };
 		03F46BEA2725677100F9A332 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 		03F46BEC27256A4A00F9A332 /* ScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreTableViewCell.xib; sourceTree = "<group>"; };
 		03F6017A271B3BD70086B541 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Message.swift; path = "../../Server-Math/Server-Math/Message.swift"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				03C8F15E270F737C00EC08BE /* Assets.xcassets */,
 				03C8F160270F737C00EC08BE /* LaunchScreen.storyboard */,
 				03C8F163270F737C00EC08BE /* Info.plist */,
+				03ECFC2F27B57D3C00D9F8EC /* ButtonSwiftUIView.swift */,
 			);
 			path = math;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				035EAC3127285937008B5754 /* StatusBar.swift in Sources */,
 				03C316CA27109672006C4EFB /* EquationObject.swift in Sources */,
 				03C8F15A270F735E00EC08BE /* MenuViewController.swift in Sources */,
+				03ECFC3027B57D3C00D9F8EC /* ButtonSwiftUIView.swift in Sources */,
 				03F6017B271B3BD70086B541 /* Message.swift in Sources */,
 				032694FC2731F3DB004A84D5 /* CarPlaySceneDelegate.swift in Sources */,
 				036863E6271364C60003DD12 /* RoundButton.swift in Sources */,
