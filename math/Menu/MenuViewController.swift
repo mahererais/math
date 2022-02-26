@@ -99,13 +99,13 @@ class MenuViewController: UIViewController {
         else if (typeMultiPlayer == .duo)
         {
             
-//            multi = MultiSearchViewController()
-//            if (UIDevice.current.userInterfaceIdiom == .pad) {
-//                multi?.browserController?.modalPresentationStyle = .overFullScreen
-//            }
-//            multi?.initialiseBrowser(rootController: self, ope: self.operateur)
-//            
-//            return
+            multi = MultiSearchViewController()
+            if (UIDevice.current.userInterfaceIdiom == .pad) {
+                multi?.browserController?.modalPresentationStyle = .overFullScreen
+            }
+            multi?.initialiseBrowser(rootController: self, ope: self.operateur)
+            
+            return
             
             
             

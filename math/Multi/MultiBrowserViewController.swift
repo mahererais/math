@@ -12,6 +12,7 @@ class MultiViewController : UIViewController {
     var statusDone = (a:false, b:false)
     var oppenentID : [Int: String]? = nil
     
+    
     @objc func sendDoneMessage()  {
         print ("*** je suis pas supposé executer cette fonction")
     }

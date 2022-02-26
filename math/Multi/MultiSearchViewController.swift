@@ -100,6 +100,7 @@ class MultiSearchViewController: MultiViewController, MCBrowserViewControllerDel
         ad?.startAdvertisingPeer()
         //browser?.startBrowsingForPeers()
         
+        StatusBar.sharedInstance.hide()
     }
     
     func loadGameViewController () {
