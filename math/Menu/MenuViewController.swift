@@ -69,7 +69,7 @@ class MenuViewController: UIViewController {
                                       height: self.view.frame.height/3)
             child.view.backgroundColor = .clear
             child.view.center = self.view.center
-            self.view.addSubview(child.view)
+           // self.view.addSubview(child.view)
         } else {
             // Fallback on earlier versions
         }

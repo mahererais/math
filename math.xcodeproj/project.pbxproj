@@ -28,6 +28,7 @@
 		03E0764927970384007CA111 /* MultiBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03E0764727970384007CA111 /* MultiBrowserViewController.xib */; };
 		03E0764B27971D95007CA111 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E0764A27971D95007CA111 /* NetworkManager.swift */; };
 		03E0764D27971E96007CA111 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E0764C27971E96007CA111 /* Tools.swift */; };
+		03EBED8A27CAFAD200734324 /* HighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EBED8927CAFAD200734324 /* HighlightedButton.swift */; };
 		03ECFC3027B57D3C00D9F8EC /* ButtonSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECFC2F27B57D3C00D9F8EC /* ButtonSwiftUIView.swift */; };
 		03F46BEB2725677100F9A332 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F46BEA2725677100F9A332 /* ScoreTableViewCell.swift */; };
 		03F46BED27256A4A00F9A332 /* ScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03F46BEC27256A4A00F9A332 /* ScoreTableViewCell.xib */; };
@@ -60,6 +61,7 @@
 		03E0764727970384007CA111 /* MultiBrowserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiBrowserViewController.xib; sourceTree = "<group>"; };
 		03E0764A27971D95007CA111 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		03E0764C27971E96007CA111 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		03EBED8927CAFAD200734324 /* HighlightedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedButton.swift; sourceTree = "<group>"; };
 		03ECFC2F27B57D3C00D9F8EC /* ButtonSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSwiftUIView.swift; sourceTree = "<group>"; };
 		03F46BEA2725677100F9A332 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 		03F46BEC27256A4A00F9A332 /* ScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreTableViewCell.xib; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				03B46DB3270FA02B00E0BC19 /* GameViewController.xib */,
 				03C316C927109672006C4EFB /* EquationObject.swift */,
 				036863E5271364C60003DD12 /* RoundButton.swift */,
+				03EBED8927CAFAD200734324 /* HighlightedButton.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03E0764D27971E96007CA111 /* Tools.swift in Sources */,
+				03EBED8A27CAFAD200734324 /* HighlightedButton.swift in Sources */,
 				03E0764B27971D95007CA111 /* NetworkManager.swift in Sources */,
 				03F915B22721E0330099BCF1 /* ResumeView+Controller.swift in Sources */,
 				03B46DB4270FA02B00E0BC19 /* GameViewController.swift in Sources */,
@@ -430,7 +434,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5.0.2;
-				DEVELOPMENT_TEAM = QNHVD4UE8Y;
+				DEVELOPMENT_TEAM = 7SZRU597FH;
 				INFOPLIST_FILE = math/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -438,7 +442,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mahere88.mathv4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.temormec.mathv4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
