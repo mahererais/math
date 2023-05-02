@@ -150,7 +150,10 @@ class ServeurListener : NSObject , NewConnectionDelegate{
     func notifyPlayerLeft(connection: NewConnection, id: [Int: String]) {
         let msg = Message(type: .playerLeft)
         msg._playerID = id
-        self.listOfPlayer[id.keys.first!] = nil
+        guard let idKey = id.keys.first else {
+            return ;
+        }
+        self.listOfPlayer[idKey] = nil
         self.sendToAllExcepteMe(connection: connection, data: self.encode(data: msg)!)
     }
     
@@ -202,6 +205,9 @@ class ServeurListener : NSObject , NewConnectionDelegate{
     
     // encode for JSon coding
     fileprivate func encode<T> (data: T) -> Data?  where T : Encodable{
+        print ("**************");
+        print(data);
+        print ("**************");
         let encoder = JSONEncoder()
         //encoder.keyEncodingStrategy = .convertToSnakeCase
         do {

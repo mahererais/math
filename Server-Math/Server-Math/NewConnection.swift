@@ -107,6 +107,9 @@ class NewConnection : NSObject{
             }else if data != nil {
                 // je decode le message
                 var message = self.decode(Message.self, data: data!)
+                guard message != nil else {
+                    return
+                }
                 if message!._type == .newPlayed {
                     if let playerId = message!._playerID {
                         (self.delegate as? ServeurListener)?.addNewPlayerOnList(newId: playerId)
@@ -114,10 +117,10 @@ class NewConnection : NSObject{
                         self.delegate?.notifyAddNewPlayer(connection: self)
                     }
                 }else if (message!._type == .invite || message!._type == .done || message!._type == .end || message!._type == .response || message!._type == .result || message!._type == .message)  {
-//                    if message!._toPlayerId == nil {
+//                    if message!._toPlayerID == nil {
 //                        self.delegate?.forwardMessage(data: data, from:self)
 //                    }else{
-                        self.delegate?.forwardMessage(data: data, toId: message!._toPlayerId!)
+                        self.delegate?.forwardMessage(data: data, toId: message!._toPlayerID!)
 //                    }
                 }else{
                     self.delegate?.forwardMessage(data: data, from: self)
@@ -136,11 +139,14 @@ class NewConnection : NSObject{
         //print ("decoding data with \"JSon\" decoder")
         let decoder = JSONDecoder()
         do {
-           // print (String(data: data, encoding: .utf8) ?? "error decoding Json data to String")
+            print (String(data: data, encoding: .utf8) ?? "error decoding Json data to String")
             let dataDecoded = try decoder.decode(type, from: data)
+            print ("**************");
+            print(dataDecoded);
+            print ("**************");
             return dataDecoded
         }catch (let err) {
-            //print ("error decoding JSon data : " + err.localizedDescription)
+            print ("error decoding JSon data : " + err.localizedDescription)
         }
 
         return nil

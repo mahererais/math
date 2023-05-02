@@ -52,6 +52,12 @@ class MenuViewController: UIViewController {
         
         self.batailleButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.seulButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.seulButton.backgroundColor = .systemPink;
+        self.batailleButton.backgroundColor = .cyan;
+        self.plusButton.backgroundColor = .systemPink;
+        self.divisButton.backgroundColor = .systemPink;
+        self.moinsButton.backgroundColor = .cyan;
+        self.multiButton.backgroundColor = .cyan;
         // **********************************************************
         self.addGestureTo(button: self.multiButton, direction: [.up, .down])
         self.addGestureTo(button: self.divisButton, direction: [.up, .down])
@@ -99,13 +105,14 @@ class MenuViewController: UIViewController {
         else if (typeMultiPlayer == .duo)
         {
             
-            multi = MultiSearchViewController()
-            if (UIDevice.current.userInterfaceIdiom == .pad) {
-                multi?.browserController?.modalPresentationStyle = .overFullScreen
-            }
-            multi?.initialiseBrowser(rootController: self, ope: self.operateur)
             
-            return
+//            multi = MultiSearchViewController()
+//            if (UIDevice.current.userInterfaceIdiom == .pad) {
+//                multi?.browserController?.modalPresentationStyle = .overFullScreen
+//            }
+//            multi?.initialiseBrowser(rootController: self, ope: self.operateur)
+//
+//            return
             
             
             

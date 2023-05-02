@@ -163,7 +163,7 @@ class GameViewController: UIViewController {
         
         message._operateur = self.operatorString
         message._equations = self.equations
-        message._toPlayerId = self.multiPeerObject?.oppenentID
+        message._toPlayerID = self.multiPeerObject?.oppenentID
         self.multiPeerObject?.sendData(equations: message)
         print ("------> envoie de \"l'equation\"")
     }

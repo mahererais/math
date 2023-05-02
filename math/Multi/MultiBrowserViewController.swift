@@ -5,6 +5,10 @@
 //  Created by maher on 18/01/2022.
 //
 
+
+// SERVICE ONLINE MULTIPLATFORM AVEC SERVEUR 
+
+
 import UIKit
 import Network
 
@@ -174,7 +178,7 @@ class MultiBrowserViewController: MultiViewController , UITableViewDataSource, U
         }else{
             let msg = Message(type: .invite)
             msg._name = UIDevice.current.name
-            msg._toPlayerId = [id : name]
+            msg._toPlayerID = [id : name]
             msg._playerID = [self.currentID: self.currentName]
             self.networkManager?.sendPacket(msg)
             
@@ -288,7 +292,7 @@ class MultiBrowserViewController: MultiViewController , UITableViewDataSource, U
         StatusBar.sharedInstance.hide()
         self.okItemButton?.isEnabled = true
         playerPosition = .first
-        self.playerID = message._toPlayerId
+        self.playerID = message._toPlayerID
         self.oppenentID = message._playerID
         self.tableView?.reloadSections(IndexSet(integer: 0), with: .none)
         
@@ -308,7 +312,7 @@ class MultiBrowserViewController: MultiViewController , UITableViewDataSource, U
     }
     func receiveInvite(message: Message) {
         let alert = UIAlertController (title: title,
-                                       message: "\(message._toPlayerId!.values.first!) invited you",
+                                       message: "\(message._toPlayerID!.values.first!) invited you",
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok",
                                       style: .default,
@@ -319,13 +323,13 @@ class MultiBrowserViewController: MultiViewController , UITableViewDataSource, U
                 DispatchQueue.main.async {
                     
                     let msg = Message(type: .invite)
-                    let tmp = message._toPlayerId
-                    msg._toPlayerId = message._playerID
+                    let tmp = message._toPlayerID
+                    msg._toPlayerID = message._playerID
                     msg._playerID = tmp
                     msg._value1 = 99 // code : ok
                     self.networkManager?.sendPacket(msg)
                     self.playerID = tmp
-                    self.oppenentID = msg._toPlayerId
+                    self.oppenentID = msg._toPlayerID
                     
                     self.rootController?.present(self.gameController!,
                                  animated: true,
@@ -340,8 +344,8 @@ class MultiBrowserViewController: MultiViewController , UITableViewDataSource, U
                                       handler: {_ in
             self.playerPosition = .none
             let msg = Message(type: .invite)
-            let tmp = message._toPlayerId
-            msg._toPlayerId = message._playerID
+            let tmp = message._toPlayerID
+            msg._toPlayerID = message._playerID
             msg._playerID = tmp
             msg._value1 = -99
             self.networkManager?.sendPacket(msg)
@@ -380,20 +384,20 @@ class MultiBrowserViewController: MultiViewController , UITableViewDataSource, U
         let msg = Message(type: .newPlayed)
         let playerId = [currentID: UIDevice.current.name]
         msg._playerID = playerId
-        msg._toPlayerId = self.oppenentID
+        msg._toPlayerID = self.oppenentID
         self.networkManager?.sendPacket(msg)
     }
     
     @objc override func sendDoneMessage()  {
         print ("------> envoie un \"Donne\"")
         let msg = Message(type: .done)
-        msg._toPlayerId = self.oppenentID
+        msg._toPlayerID = self.oppenentID
         msg._playerID = self.playerID
         self.networkManager?.sendPacket(msg)
     }
     
     override func sendData (equations : Message) {
-        equations._toPlayerId = self.oppenentID
+        equations._toPlayerID = self.oppenentID
         equations._playerID = self.playerID
         self.networkManager?.sendPacket(equations)
     }

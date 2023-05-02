@@ -442,7 +442,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 5.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.temormec.mathv4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.temormec.mathv5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;

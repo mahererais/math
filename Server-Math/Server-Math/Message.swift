@@ -23,17 +23,17 @@ enum TypeMessage : Int, Codable{
 
 
 fileprivate enum MessageKeys : String {
-    case type         = "type"
-    case equation     = "equation"
-    case value1       = "value1"
-    case value2       = "value2"
-    case operateur    = "operateur"
-    case resultat     = "resultat"
-    case btPressed    = "btPressed"
-    case name         = "name"
-    case playerID     = "playerID"
-    case toPlayerID   = "toPlayerID"
-    case invite       = "invite"
+    case type         = "_type"
+    case equation     = "_equation"
+    case value1       = "_value1"
+    case value2       = "_value2"
+    case operateur    = "_operateur"
+    case resultat     = "_resultat"
+    case btPressed    = "_btPressed"
+    case name         = "_name"
+    case playerID     = "_playerID"
+    case toPlayerID   = "_toPlayerID"
+    case invite       = "_invite"
 }
 
 class Message: NSObject, Codable {
@@ -47,7 +47,7 @@ class Message: NSObject, Codable {
     var _btPressed: String?
     var _name: String?
     var _playerID: [Int: String]?
-    var _toPlayerId : [Int: String]?
+    var _toPlayerID : [Int: String]?
     
     init(type: TypeMessage) {
         self._type = type
@@ -67,7 +67,7 @@ class Message: NSObject, Codable {
         coder.encode(self._btPressed, forKey: MessageKeys.btPressed.rawValue)
         coder.encode(self._name, forKey: MessageKeys.name.rawValue)
         coder.encode(self._playerID, forKey: MessageKeys.playerID.rawValue)
-        coder.encode(self._toPlayerId, forKey: MessageKeys.toPlayerID.rawValue)
+        coder.encode(self._toPlayerID, forKey: MessageKeys.toPlayerID.rawValue)
     }
     
     required init?(coder: NSCoder) {
@@ -81,12 +81,23 @@ class Message: NSObject, Codable {
         self._btPressed = coder.decodeObject(forKey: MessageKeys.btPressed.rawValue) as! String
         self._name = coder.decodeObject(forKey: MessageKeys.name.rawValue) as! String
         self._playerID = coder.decodeObject(forKey: MessageKeys.playerID.rawValue) as! [Int : String]
-        self._toPlayerId = coder.decodeObject(forKey: MessageKeys.toPlayerID.rawValue) as! [Int : String]
+        self._toPlayerID = coder.decodeObject(forKey: MessageKeys.toPlayerID.rawValue) as! [Int : String]
     }
     
     // MARK: - debug description
     
     override var description: String {
-        return "type : \(_type) equation: \(_equations) value_1 : \(_value1)"
+        return """
+                _type : \(_type)
+                _equation: \(_equations)
+                _value_1 : \(_value1)
+                _value_2 : \(_value2)
+                _resultat : \(_resultat)
+                _operateur : \(_operateur)
+                _btPressed: \(_btPressed)
+                _name: \(_name)
+                _playerID: \(_playerID)
+                _toPlayerID: \(_toPlayerID)
+                """;
     }
 }

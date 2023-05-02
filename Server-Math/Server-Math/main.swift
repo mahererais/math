@@ -9,10 +9,16 @@ import Foundation
 import Network
 
 
+/*  if server can't start because of port already used
+    kill the previous socket listing to your port
+    see it on Terminal : netstat -p tcp -a | grep -e ".24088"
+    then get the pid sudo lsof -i :24088 et kill it with
+    kill -9 commande
+ 
+ */
 
 
-
-let port: UInt16 = 24099
+let port: UInt16 = 24088
 
 
 print ("creation du serveur .... sur le port : " + String(port))
